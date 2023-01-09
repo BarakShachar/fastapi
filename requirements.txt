@@ -16,3 +16,4 @@ watchfiles==0.16.1
 websockets==10.3
 firebase_admin==6.0.1
 ipython
+python-multipart==0.0.5

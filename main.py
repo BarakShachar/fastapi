@@ -1,5 +1,4 @@
 from fastapi import FastAPI, status, Form
-from pydantic import BaseModel
 import firebase_admin
 from firebase_admin import credentials, firestore
 import os
