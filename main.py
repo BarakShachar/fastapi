@@ -33,7 +33,7 @@ class User(BaseModel):
 
 @app.post("/signup/", status_code=status.HTTP_201_CREATED)
 async def demo_post(user: User):
-    doc_ref = db.ollection("users").document(user.mail)
+    doc_ref = db.collection("users").document(user.mail)
     doc_ref.set({
         "isAdmin": user.isAdmin,
         "name": user.name,
