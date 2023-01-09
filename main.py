@@ -1,4 +1,4 @@
-from fastapi import FastAPI, status
+from fastapi import FastAPI, status, Form
 from pydantic import BaseModel
 import firebase_admin
 from firebase_admin import credentials, firestore
@@ -25,18 +25,12 @@ db = firestore.client()
 app = FastAPI()
 
 
-class User(BaseModel):
-    mail: str
-    name: str
-    isAdmin: bool
-
-
 @app.post("/signup/", status_code=status.HTTP_201_CREATED)
-async def demo_post(user: User):
-    doc_ref = db.collection("users").document(user.mail)
+async def create_user(mail: str = Form(), isAdmin: str = Form(), name: str = Form()):
+    doc_ref = db.collection("users").document(mail)
     doc_ref.set({
-        "isAdmin": user.isAdmin,
-        "name": user.name,
+        "isAdmin": isAdmin,
+        "name": name,
         "adminMail": None
     })
     return {"message": "user created successfully"}
