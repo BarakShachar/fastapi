@@ -25,7 +25,7 @@ app = FastAPI()
 
 
 @app.post("/signup/", status_code=status.HTTP_201_CREATED)
-async def create_user(mail: str = Form(), isAdmin: str = Form(), name: str = Form()):
+async def create_user(mail: str = Form(), isAdmin: bool = Form(), name: str = Form()):
     doc_ref = db.collection("users").document(mail)
     doc_ref.set({
         "isAdmin": isAdmin,
